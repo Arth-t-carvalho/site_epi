@@ -484,7 +484,7 @@
     }
 
     .hero-typewriter.typing {
-      animation: typewriter-text 2.2s steps(18, end) forwards,
+      animation: typewriter-text 1.2s steps(18, end) forwards,
                  typewriter-cursor 0.8s step-end infinite;
     }
 
@@ -2134,7 +2134,7 @@
       scrollTrigger: {
         trigger: '#hero-wrapper',
         start: 'top top',
-        end: '+=1600%',   // Extended for full typewriter sequence
+        end: '+=700%',   // Reduced from 1600% to make it shorter/faster!
         scrub: 1.2,
         pin: true,
         anticipatePin: 1,
@@ -2144,67 +2144,67 @@
     // ---- Phase 1: red panel sweeps left → full screen ----
     heroTl.to('#hero-red-panel', {
       left: '0%', width: '100%',
-      ease: 'power2.inOut', duration: 3
+      ease: 'power2.inOut', duration: 1.5
     });
     heroTl.to('#hero-left', {
       opacity: 0, x: -40,
-      ease: 'power2.in', duration: 1.5
+      ease: 'power2.in', duration: 0.8
     }, '<');
 
     // ---- Phase 2a: truck image fades OUT ----
     heroTl.to('#hero-truck-img', {
-      opacity: 0, ease: 'power1.inOut', duration: 1.5
+      opacity: 0, ease: 'power1.inOut', duration: 0.8
     });
 
     // ---- Phase 2b: text layer fades IN ----
     heroTl.to('#hero-text-layer', {
-      opacity: 1, ease: 'power2.out', duration: 1
-    }, '<0.5');
+      opacity: 1, ease: 'power2.out', duration: 0.5
+    }, '<0.3');
 
     // ---- Phase 2c: TYPE FACCHINI char by char ----
     heroTl.to('#hero-brand-name', { opacity: 1, duration: 0.01 });
     facchiniChars.forEach(ch => {
-      heroTl.to(ch, { opacity: 1, duration: 0.25, ease: 'none' });
+      heroTl.to(ch, { opacity: 1, duration: 0.12, ease: 'none' });
     });
 
     // Pause on FACCHINI
-    heroTl.to({}, { duration: 1.5 });
+    heroTl.to({}, { duration: 0.6 });
     // Label: checkpoint "facchini" for arrow navigation
     heroTl.addLabel('facchini');
 
     // ---- Phase 3: ERASE FACCHINI (right to left) ----
     [...facchiniChars].reverse().forEach(ch => {
-      heroTl.to(ch, { opacity: 0, duration: 0.18, ease: 'none' });
+      heroTl.to(ch, { opacity: 0, duration: 0.08, ease: 'none' });
     });
     heroTl.to('#hero-brand-name', { opacity: 0, duration: 0.01 });
 
     // Short pause between words
-    heroTl.to({}, { duration: 0.5 });
+    heroTl.to({}, { duration: 0.2 });
 
     // ---- Phase 4: TYPE PROJETO EPI char by char ----
     heroTl.to('#hero-projeto', { opacity: 1, duration: 0.01 });
     projetoChars.forEach(ch => {
-      heroTl.to(ch, { opacity: 1, duration: 0.22, ease: 'none' });
+      heroTl.to(ch, { opacity: 1, duration: 0.1, ease: 'none' });
     });
 
     // Pause on PROJETO EPI
-    heroTl.to({}, { duration: 1.5 });
+    heroTl.to({}, { duration: 0.6 });
     // Label: checkpoint "projeto" for arrow navigation
     heroTl.addLabel('projeto');
 
     // ---- Phase 5: ERASE PROJETO EPI (right to left) ----
     [...projetoChars].reverse().forEach(ch => {
-      heroTl.to(ch, { opacity: 0, duration: 0.16, ease: 'none' });
+      heroTl.to(ch, { opacity: 0, duration: 0.08, ease: 'none' });
     });
     heroTl.to('#hero-projeto', { opacity: 0, duration: 0.01 });
 
-    heroTl.to({}, { duration: 0.5 });
+    heroTl.to({}, { duration: 0.2 });
 
     // ---- Phase 6: O QUE É? appears with scale punch ----
     heroTl.fromTo('#hero-question',
       { opacity: 0, scale: 0.6 },
       {
-        opacity: 1, scale: 1, ease: 'back.out(1.7)', duration: 1.5,
+        opacity: 1, scale: 1, ease: 'back.out(1.7)', duration: 0.8,
         onStart: () => {
           // Restart typewriter animation
           const tw = document.getElementById('hero-typewriter');
@@ -2219,19 +2219,19 @@
     // Label: checkpoint "question" for arrow navigation
     heroTl.addLabel('question');
 
-    // After typewriter finishes (~2.2s), fade in the EPI text block
+    // After typewriter finishes (~1.2s), fade in the EPI text block
     heroTl.to('#hero-epi-text-block', {
-      opacity: 1, y: 0, ease: 'power2.out', duration: 1
-    }, '+=2.2');
+      opacity: 1, y: 0, ease: 'power2.out', duration: 0.6
+    }, '+=1.2');
 
     // Pause to allow reading the text
-    heroTl.to({}, { duration: 3 });
+    heroTl.to({}, { duration: 1.2 });
 
     // ---- Phase 7: O QUE É? scales up and fades out ----
-    heroTl.to('#hero-epi-text-block', { opacity: 0, duration: 0.4, ease: 'power1.in' });
+    heroTl.to('#hero-epi-text-block', { opacity: 0, duration: 0.3, ease: 'power1.in' });
     heroTl.to('#hero-question', {
-      opacity: 0, scale: 1.3, ease: 'power2.in', duration: 1
-    }, '<0.2');
+      opacity: 0, scale: 1.3, ease: 'power2.in', duration: 0.6
+    }, '<0.1');
 
     // ---- Phase 8: EPIGuard Screen appears with staggering animations ----
     heroTl.set('#hero-epiguard-screen', { display: 'flex' });
@@ -2241,34 +2241,34 @@
 
     heroTl.fromTo('#hero-epiguard-screen .epiguard-left > *',
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 2, stagger: 0.35, ease: 'power2.out' }
+      { opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: 'power2.out' }
     );
     heroTl.fromTo('#hero-epiguard-screen .epiguard-card',
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1.5, stagger: 0.25, ease: 'power2.out' },
-      '-=1.2'
+      { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' },
+      '-=0.8'
     );
     heroTl.fromTo('#hero-epiguard-screen .monitor-wrapper',
       { opacity: 0, scale: 0.9, y: 30 },
-      { opacity: 1, scale: 1, y: 0, duration: 2.5, ease: 'back.out(1.2)' },
-      '-=1.8'
+      { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'back.out(1.2)' },
+      '-=1.0'
     );
 
     // Pause reading the screen
-    heroTl.to({}, { duration: 3 });
+    heroTl.to({}, { duration: 1.5 });
     // Label: checkpoint "end" - last position before red drains
     heroTl.addLabel('end');
 
     // ---- Phase 9: Slowly drain red → white ----
     // Fade out the EPIGuard screen first
-    heroTl.to('#hero-epiguard-screen', { opacity: 0, y: -20, ease: 'power1.in', duration: 2 });
+    heroTl.to('#hero-epiguard-screen', { opacity: 0, y: -20, ease: 'power1.in', duration: 1.0 });
 
-    // Then bleed red away slowly (5% feel = very long ease: none)
+    // Then bleed red away slowly
     heroTl.to('#hero-red-panel', {
       backgroundColor: '#ffffff',
       ease: 'none',
-      duration: 6
-    }, '<0.5');
+      duration: 2.5
+    }, '<0.2');
 
     // =============================================
     // Section reveal animations
